@@ -1,5 +1,7 @@
 import './App.css';
-import logo from './imagens/logo.svg'
+import Logo from './componentes/logo';
+
+const textoOpcoes = ['CATEGORIAS', 'FAVORITOS', 'MINHA ESTANTE']
 
 
 function App() {
@@ -7,12 +9,11 @@ function App() {
     <div className="App">
       <header className="App-header">
 
-        <div className='logo'>
-          <img src={logo} alt='logo'></img>
-          <p>Alura Books  9599
-            
-          </p>
-        </div>
+        <Logo />
+
+        <ul>
+          {textoOpcoes.map(texto => (<li><p>{texto}</p></li>))}
+        </ul>
 
       </header>
     </div>
