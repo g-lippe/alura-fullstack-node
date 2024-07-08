@@ -1,7 +1,7 @@
 import './App.css';
 import Logo from './componentes/logo';
 
-import OpcoesHeader from './componentes/opcoesHeader'
+const textoOpcoes = ['CATEGORIAS', 'FAVORITOS', 'MINHA ESTANTE']
 
 
 function App() {
@@ -11,9 +11,9 @@ function App() {
 
         <Logo />
 
-
-        <OpcoesHeader />
-
+        <ul>
+          {textoOpcoes.map(texto => (<li><p>{texto}</p></li>))}
+        </ul>
 
       </header>
     </div>
