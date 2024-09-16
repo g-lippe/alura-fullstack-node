@@ -1,12 +1,18 @@
+import styled from 'styled-components';
 import Logo from '../logo';
 import OpcoesHeader from '../opcoesHeader';
-import './header_style.css';
+
+const HeaderContainer = styled.header`
+  background-color: #FFF;
+  display: flex;
+  justify-content: center;
+`
 
 export default function Header() {
   return (
-    <header className="App-header">
+    <HeaderContainer>
       <Logo />
       <OpcoesHeader />
-    </header>
+    </HeaderContainer>
   )
 }
