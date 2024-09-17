@@ -27,20 +27,27 @@ const PesquisaContainer = styled.section`
 
 `
 
-const BlocoLivro = styled.div`
+const ListaPesquisa = styled.div`
+
+  display: grid;
+  grid-template: auto auto;
 
 
-  display: flex;
-  align-items: center;
-  margin-bottom: 20px;
-  margin: 2px 20%;
-  transition: 0.3s;
-  border-radius: 10px;
-  padding: 5px;
 
-  &:hover {
-    transform: scale(1.05);
-    background-color: #FFF1;
+  div {
+    display: flex;
+    align-items: center;
+    margin-bottom: 20px;
+    margin: 2px 20%;
+    transition: 0.3s;
+    border-radius: 10px;
+    padding: 5px;
+
+    &:hover {
+      transform: scale(1.05);
+      background-color: #FFF1;
+    }
+
   }
 
 
@@ -74,12 +81,14 @@ export default function Pesquisa() {
         console.log(resultado)
       }} />
 
-      {livrosPesquisados.map(livro => (
-        <BlocoLivro key={livro.id}>
-          <img src={livro.src} />
-          <p>{livro.nome}</p>
-        </BlocoLivro>
-      ))}
+      <ListaPesquisa >
+        {livrosPesquisados.map(livro => (
+          <div key={livro.id}>
+            <img src={livro.src} />
+            <p>{livro.nome}</p>
+          </div>
+        ))}
+      </ListaPesquisa>
 
 
 
