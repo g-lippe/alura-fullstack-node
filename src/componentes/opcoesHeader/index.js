@@ -34,13 +34,13 @@ function OpcoesHeader() {
     <Fragment>
       <Lista>
         {textoOpcoes.map(texto => (
-          <Opcao><p>{texto}</p></Opcao>)
+          <Opcao key={texto}><p>{texto}</p></Opcao>)
         )}
       </Lista>
 
       <Lista>
         {icones.map(icone => (
-          <Icone><img src={icone} alt='icone'></img></Icone>)
+          <Icone key={icone}><img src={icone} alt='icone'></img></Icone>)
         )}
       </Lista>
     </Fragment>
