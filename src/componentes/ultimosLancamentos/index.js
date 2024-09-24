@@ -1,6 +1,8 @@
 import { livrosLançamentos } from "./dadosUltimosLanc";
 import { Titulo } from "../titulo";
 import styled from 'styled-components';
+import CardRecomenda from "../cardRecomenda";
+import imgLivro2 from '../../imagens/livro2.png';
 
 
 const UltimosLancamentosContainer = styled.section`
@@ -19,15 +21,28 @@ const UltimosLancamentosContainer = styled.section`
 
 `
 
+
 export default function UltimosLancamentos() {
   return (
-    <UltimosLancamentosContainer>
-      <Titulo cor="#000">ÚLTIMOS LANÇAMENTOS</Titulo>
-      <div>
-        {livrosLançamentos.map(livro => (
-          <img src={livro.src} alt="livro" key={livro.id}/>
-        ))}
-      </div>
-    </UltimosLancamentosContainer>
+    <div>
+
+      <UltimosLancamentosContainer>
+        <Titulo cor="#EB9B00" tamanhoFonte="36px"> ÚLTIMOS LANÇAMENTOS </Titulo>
+        <div>
+          {livrosLançamentos.map(livro => (
+            <img src={livro.src} alt="livro" key={livro.id} />
+          ))}
+        </div>
+
+      </UltimosLancamentosContainer>
+
+      <CardRecomenda
+        titulo="Talvez você se interesse por..."
+        subtitulo="Angular 11"
+        descricao="Criando uma aplicação moderna com o Angular"
+        imagem={imgLivro2}
+      />
+
+    </div>
   )
 }
