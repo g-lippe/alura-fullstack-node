@@ -29,7 +29,6 @@ const Icone = styled.li`
   width: 25px;
 `
 
-
 function OpcoesHeader() {
   return (
     <Fragment>
