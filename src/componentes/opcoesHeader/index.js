@@ -1,9 +1,10 @@
+import { Link } from 'react-router-dom'
 import perfil from '../../imagens/perfil.svg'
 import sacola from '../../imagens/sacola.svg'
 import { Fragment } from 'react'
 import styled from 'styled-components'
 
-const textoOpcoes = ['CATEGORIAS', 'FAVORITOS', 'MINHA ESTANTE']
+const textoOpcoes = ['CATEGORIAS', 'FAVORITOS', 'ESTANTE']
 const icones = [perfil, sacola]
 
 const Lista = styled.ul`
@@ -33,9 +34,9 @@ function OpcoesHeader() {
   return (
     <Fragment>
       <Lista>
-        {textoOpcoes.map(texto => (
-          <Opcao key={texto}><p>{texto}</p></Opcao>)
-        )}
+        {textoOpcoes.map(texto => ( 
+          <Link to={`/${texto.toLowerCase()}`}><Opcao key={texto}><p>{texto}</p></Opcao></Link>
+        ))}
       </Lista>
 
       <Lista>
