@@ -1,7 +1,7 @@
 import Input from "../Input";
 import styled from "styled-components";
-import { useState } from 'react';
-import { livros } from './dadosPesquisa';
+import { useEffect, useState } from 'react';
+import { getLivros } from "../../servicos/livros";
 
 const PesquisaContainer = styled.section`
 
@@ -68,18 +68,24 @@ const ListaPesquisa = styled.div`
 export default function Pesquisa() {
 
   const [livrosPesquisados, setLivrosPesquisados] = useState([])
+  const [livros, setLivros] = useState([])
+
+  useEffect(() => {
+    const livrosDaAPI = getLivros()
+    setLivros(livrosDaAPI)
+  }, [])
 
   return (
     <PesquisaContainer>
       <h2>Já sabe por onde começar?</h2>
       <h3>Encontre seu livro em nossa estante</h3>
-      <Input placeholder="Pesquise sua próxima leitura" onBlur={e => {
-
-        const resultado = livros.filter(livro => livro.nome.toLowerCase().includes(e.target.value.toLowerCase()))
-        setLivrosPesquisados(resultado)
-        console.log("Livros", livros)
-        console.log(resultado)
-      }} />
+      <Input
+        placeholder="Pesquise sua próxima leitura"
+        onBlur={e => {
+          const resultado = livros.filter(livro => livro.nome.toLowerCase().includes(e.target.value.toLowerCase()))
+          setLivrosPesquisados(resultado)
+        }}
+      />
 
       <ListaPesquisa >
         {livrosPesquisados.map(livro => (
