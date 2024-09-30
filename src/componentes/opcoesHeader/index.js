@@ -34,7 +34,7 @@ function OpcoesHeader() {
     <Fragment>
       <Lista>
         {textoOpcoes.map(texto => ( 
-          <Link to={`/${texto.toLowerCase()}`}><Opcao key={texto}><p>{texto}</p></Opcao></Link>
+          <Link key={texto} to={`/${texto.toLowerCase()}`}><Opcao key={texto}><p>{texto}</p></Opcao></Link>
         ))}
       </Lista>
 

@@ -27,7 +27,7 @@ export default function UltimosLancamentos() {
     <div>
 
       <UltimosLancamentosContainer>
-        <Titulo cor="#EB9B00" tamanhoFonte="36px"> ÚLTIMOS LANÇAMENTOS </Titulo>
+        <Titulo cor="#EB9B00" tamanhofonte="36px"> ÚLTIMOS LANÇAMENTOS </Titulo>
         <div>
           {livrosLançamentos.map(livro => (
             <img src={livro.src} alt="livro" key={livro.id} />
