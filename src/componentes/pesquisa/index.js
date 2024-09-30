@@ -64,26 +64,33 @@ const ListaPesquisa = styled.div`
 
 `
 
-
 export default function Pesquisa() {
-
   const [livrosPesquisados, setLivrosPesquisados] = useState([])
   const [livros, setLivros] = useState([])
 
+
   useEffect(() => {
-    const livrosDaAPI = getLivros()
-    setLivros(livrosDaAPI)
+    fetchLivros()
   }, [])
+
+
+  async function fetchLivros() {
+    const livrosDaAPI = await getLivros()
+    setLivros(livrosDaAPI)
+    setLivrosPesquisados(livrosDaAPI)
+  }
+
 
   return (
     <PesquisaContainer>
       <h2>Já sabe por onde começar?</h2>
-      <h3>Encontre seu livro em nossa estante</h3>
+      <h3>Encontre seu livro em nossa estante.</h3>
       <Input
-        placeholder="Pesquise sua próxima leitura"
-        onBlur={e => {
-          const resultado = livros.filter(livro => livro.nome.toLowerCase().includes(e.target.value.toLowerCase()))
-          setLivrosPesquisados(resultado)
+        placeholder="Escreva sua próxima leitura"
+        onBlur={evento => {
+          const textoDigitado = evento.target.value
+          const resultadoPesquisa = livros.filter(livro => livro.nome.includes(textoDigitado))
+          setLivrosPesquisados(resultadoPesquisa)
         }}
       />
 
@@ -91,7 +98,7 @@ export default function Pesquisa() {
         {livrosPesquisados.map(livro => (
           <div key={livro.id}>
             <img src={livro.src} />
-            <p>{livro.nome}</p>
+            <p>{livro.name}</p>
           </div>
         ))}
       </ListaPesquisa>
