@@ -2,6 +2,7 @@ import Input from "../Input";
 import styled from "styled-components";
 import { useEffect, useState } from 'react';
 import { getLivros } from "../../servicos/livros";
+import { postFavorito } from "../../servicos/favoritos";
 
 const PesquisaContainer = styled.section`
 
@@ -28,41 +29,27 @@ const PesquisaContainer = styled.section`
 `
 
 const ListaPesquisa = styled.div`
-
   display: grid;
-  grid-template: auto auto;
+  grid-template-columns: repeat(4, 1fr);
 
+`
 
-
-  div {
-    display: flex;
+const LivroPesquisa = styled.div`
+  
     align-items: center;
-    margin-bottom: 20px;
-    margin: 2px 20%;
     transition: 0.3s;
     border-radius: 10px;
     padding: 5px;
+    font-size: 12px;
+    /* width: 50px; */
 
     &:hover {
       transform: scale(1.05);
       background-color: #FFF1;
     }
 
-  }
-
-
-  img {
-    width: 120px;
-  }
-
-  p {
-    font-size: 24px;
-    margin-left: 40px;
-  }
-
-
-
-`
+  
+  `
 
 export default function Pesquisa() {
   const [livrosPesquisados, setLivrosPesquisados] = useState([])
@@ -81,6 +68,11 @@ export default function Pesquisa() {
   }
 
 
+  async function insereFavorito(id) {
+    await postFavorito(id)
+    alert('livro adicionado aos favoritos')
+  }
+
   return (
     <PesquisaContainer>
       <h2>Já sabe por onde começar?</h2>
@@ -89,17 +81,17 @@ export default function Pesquisa() {
         placeholder="Escreva sua próxima leitura"
         onBlur={evento => {
           const textoDigitado = evento.target.value
-          const resultadoPesquisa = livros.filter(livro => livro.nome.includes(textoDigitado))
+          const resultadoPesquisa = livros.filter(livro => livro.name.includes(textoDigitado))
           setLivrosPesquisados(resultadoPesquisa)
         }}
       />
 
       <ListaPesquisa >
         {livrosPesquisados.map(livro => (
-          <div key={livro.id}>
+          <LivroPesquisa key={livro.id} onClick={() => insereFavorito(livro.id)}>
             <img src={livro.src} />
             <p>{livro.name}</p>
-          </div>
+          </LivroPesquisa>
         ))}
       </ListaPesquisa>
 
